@@ -1,242 +1,524 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clib</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #F8F7F4;
-            color: #2C2C3A;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 60px 24px;
-        }
-        /* 언어 선택 */
-        .lang-bar {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 32px;
-        }
-        .lang-select {
-            appearance: none;
-            -webkit-appearance: none;
-            background: #FFFFFF;
-            border: 1px solid #E5E5E5;
-            border-radius: 10px;
-            padding: 8px 32px 8px 14px;
-            font-size: 14px;
-            color: #2C2C3A;
-            cursor: pointer;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' stroke='%238E8E93' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 12px center;
-        }
-        .lang-select:focus {
-            outline: none;
-            border-color: #5BA67D;
-        }
-        .hero {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        .app-icon {
-            width: 120px;
-            height: 120px;
-            border-radius: 27px;
-            margin-bottom: 24px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-        }
-        h1 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        .subtitle {
-            font-size: 18px;
-            color: #5BA67D;
-            font-weight: 500;
-            margin-bottom: 16px;
-        }
-        .tagline {
-            font-size: 16px;
-            color: #8E8E93;
-        }
-        .features {
-            margin-bottom: 48px;
-        }
-        .feature {
-            background: #FFFFFF;
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-        .feature h3 {
-            font-size: 17px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .feature p {
-            font-size: 15px;
-            color: #6B6B6B;
-        }
-        .privacy {
-            background: #FFFFFF;
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 48px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-        .privacy h2 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-        .privacy-date {
-            font-size: 13px;
-            color: #AEAEB2;
-            margin-bottom: 16px;
-        }
-        .privacy h3 {
-            font-size: 16px;
-            margin-top: 20px;
-            margin-bottom: 8px;
-        }
-        .privacy p {
-            font-size: 15px;
-            color: #6B6B6B;
-            margin-bottom: 8px;
-        }
-        .privacy a {
-            color: #5BA67D;
-            text-decoration: none;
-        }
-        .privacy a:hover {
-            text-decoration: underline;
-        }
-        .contact {
-            text-align: center;
-            padding: 32px 0;
-            border-top: 1px solid #E5E5E5;
-        }
-        .contact h2 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-        .contact p {
-            font-size: 15px;
-            color: #8E8E93;
-            margin-bottom: 4px;
-        }
-        .contact a {
-            color: #5BA67D;
-            text-decoration: none;
-        }
-        .contact a:hover {
-            text-decoration: underline;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Clib — 스와이프 지식 도서관. 저장만 하던 습관에서 읽는 습관으로.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Clib — 스와이프 지식 도서관">
+  <meta property="og:description" content="저장만 하던 습관에서 읽는 습관으로. 스와이프 카드 UI로 링크를 게임처럼 소화하세요.">
+  <meta property="og:image" content="img/og.png">
+  <meta property="og:url" content="https://vljh246v.github.io/clib-support/">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Clib — 스와이프 지식 도서관</title>
+  <link rel="icon" href="icon.png">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #F8F7F4;
+      --surface: #FFFFFF;
+      --surf2:   #F2F1EE;
+      --primary: #2C2C3A;
+      --accent:  #5BA67D;
+      --muted:   #8E8E93;
+      --body:    #6B6B6B;
+      --border:  #E5E5E5;
+      --nav-h:   60px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+      background: rgba(248,247,244,0.82);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(229,229,229,0.6);
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--primary);
+    }
+    .nav-brand img {
+      width: 30px; height: 30px; border-radius: 7px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+    }
+    .nav-brand span { font-size: 17px; font-weight: 700; letter-spacing: -0.3px; }
+    .nav-right { display: flex; align-items: center; gap: 6px; }
+    .nav-link {
+      font-size: 14px; color: var(--body);
+      text-decoration: none; padding: 6px 12px;
+      border-radius: 20px; transition: background 0.15s, color 0.15s;
+    }
+    .nav-link:hover { background: var(--surf2); color: var(--primary); }
+    .nav-cta {
+      background: var(--primary); color: #fff !important;
+      padding: 8px 16px; border-radius: 20px;
+      font-size: 14px; font-weight: 600; text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .nav-cta:hover { opacity: 0.82; }
+    .nav-lang {
+      appearance: none; -webkit-appearance: none;
+      background: var(--surf2); border: none; border-radius: 8px;
+      padding: 6px 10px; font-size: 13px; color: var(--primary);
+      cursor: pointer; font-family: inherit; margin-left: 4px;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100svh;
+      display: flex; align-items: center;
+      padding: calc(var(--nav-h) + 60px) 24px 80px;
+    }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+    }
+    .hero-eyebrow {
+      display: inline-block; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); background: rgba(91,166,125,0.1);
+      padding: 4px 12px; border-radius: 20px; margin-bottom: 20px;
+    }
+    .hero-title {
+      font-size: clamp(34px, 4.5vw, 60px);
+      font-weight: 800; line-height: 1.15;
+      letter-spacing: -1.5px; margin-bottom: 20px;
+      white-space: pre-line;
+    }
+    .hero-tagline {
+      font-size: clamp(16px, 1.8vw, 19px);
+      color: var(--body); margin-bottom: 36px; line-height: 1.65;
+    }
+    .hero-actions { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+
+    .btn-store {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--primary); color: #fff;
+      text-decoration: none; padding: 13px 22px; border-radius: 14px;
+      font-weight: 600; font-size: 15px;
+      box-shadow: 0 4px 18px rgba(44,44,58,0.22);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-store:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(44,44,58,0.28); }
+    .btn-store svg { width: 19px; height: 19px; fill: currentColor; flex-shrink: 0; }
+    .btn-store-sub { font-size: 11px; font-weight: 400; opacity: 0.75; display: block; line-height: 1.2; }
+    .btn-store-label { font-size: 15px; font-weight: 700; display: block; line-height: 1.3; }
+
+    .btn-store-light {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #fff; color: var(--primary);
+      text-decoration: none; padding: 13px 22px; border-radius: 14px;
+      font-weight: 600; font-size: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.14);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-store-light:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.2); }
+    .btn-store-light svg { width: 19px; height: 19px; fill: var(--primary); flex-shrink: 0; }
+
+    .android-note { font-size: 13px; color: var(--muted); }
+    .android-note-light { font-size: 13px; color: rgba(255,255,255,0.5); }
+
+    /* Phone mockup */
+    .hero-visual { display: flex; justify-content: center; }
+    .phone {
+      position: relative;
+      width: min(270px, 44vw); aspect-ratio: 9/19.5;
+      background: var(--surf2); border-radius: 40px;
+      box-shadow:
+        0 0 0 2px rgba(0,0,0,0.06),
+        0 0 0 10px var(--surface),
+        0 0 0 12px #C8C8C8,
+        0 40px 100px rgba(44,44,58,0.22);
+      overflow: hidden;
+    }
+    .phone img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .phone-ph {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 10px;
+      background: linear-gradient(145deg,#F2F1EE,#E5E3DC);
+      color: var(--muted); font-size: 13px; text-align: center; padding: 24px;
+    }
+    .phone-ph span:first-child { font-size: 36px; }
+
+    /* ── FEATURES GRID ── */
+    #features {
+      padding: 100px 24px;
+      background: var(--surface);
+    }
+    .sec-head { text-align: center; max-width: 580px; margin: 0 auto 56px; }
+    .sec-eye {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+    }
+    .sec-title {
+      font-size: clamp(26px, 3.5vw, 42px);
+      font-weight: 800; letter-spacing: -1px; line-height: 1.2;
+    }
+    .grid-6 {
+      max-width: 1000px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    }
+    .feat-card {
+      background: var(--bg); border-radius: 20px; padding: 30px 26px;
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .feat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(44,44,58,0.08); }
+    .feat-icon { font-size: 30px; margin-bottom: 14px; display: block; }
+    .feat-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .feat-desc { font-size: 14px; color: var(--body); line-height: 1.65; }
+
+    /* ── FEATURE DETAIL ── */
+    .fd {
+      padding: 100px 24px;
+    }
+    .fd:nth-of-type(even) { background: var(--surface); }
+    .fd-inner {
+      max-width: 960px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .fd-inner.rev { direction: rtl; }
+    .fd-inner.rev > * { direction: ltr; }
+    .fd-eye { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .fd-title {
+      font-size: clamp(22px, 3vw, 34px);
+      font-weight: 800; letter-spacing: -0.8px; line-height: 1.25;
+      margin-bottom: 14px; white-space: pre-line;
+    }
+    .fd-desc { font-size: 16px; color: var(--body); line-height: 1.7; }
+    .fd-visual { display: flex; justify-content: center; }
+    .fd-phone {
+      width: min(210px, 38vw); aspect-ratio: 9/19.5;
+      background: var(--surf2); border-radius: 32px;
+      box-shadow:
+        0 0 0 2px rgba(0,0,0,0.06),
+        0 0 0 8px var(--surface),
+        0 0 0 10px #C8C8C8,
+        0 30px 80px rgba(44,44,58,0.18);
+      overflow: hidden;
+    }
+    .fd-phone img { width: 100%; height: 100%; object-fit: cover; }
+    .fd-phone .phone-ph { font-size: 12px; }
+    .fd-phone .phone-ph span:first-child { font-size: 28px; }
+
+    /* ── DOWNLOAD CTA ── */
+    #download {
+      padding: 120px 24px; text-align: center;
+      background: var(--primary); color: #fff;
+    }
+    #download .sec-title { color: #fff; margin-bottom: 14px; }
+    #download .sec-sub { font-size: 18px; color: rgba(255,255,255,0.68); margin-bottom: 44px; }
+    .dl-actions { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+
+    /* ── PRIVACY ── */
+    #privacy { padding: 80px 24px; }
+    .priv-inner {
+      max-width: 720px; margin: 0 auto;
+      background: var(--surface); border-radius: 20px; padding: 48px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 12px rgba(44,44,58,0.06);
+    }
+    .priv-inner h2 { font-size: 24px; font-weight: 700; margin-bottom: 6px; }
+    .priv-date { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
+    .priv-inner h3 { font-size: 15px; font-weight: 600; margin-top: 26px; margin-bottom: 8px; }
+    .priv-inner p { font-size: 14px; color: var(--body); line-height: 1.7; margin-bottom: 6px; }
+    .priv-inner a { color: var(--accent); text-decoration: none; }
+    .priv-inner a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 36px 24px; background: var(--surface);
+      border-top: 1px solid var(--border); text-align: center;
+    }
+    .foot-inner { max-width: 600px; margin: 0 auto; }
+    .foot-title { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+    .foot-desc { font-size: 14px; color: var(--muted); margin-bottom: 4px; }
+    .foot-link { color: var(--accent); text-decoration: none; font-size: 14px; }
+    .foot-link:hover { text-decoration: underline; }
+    .foot-copy { margin-top: 20px; font-size: 12px; color: var(--muted); }
+
+    /* ── REVEAL ANIMATIONS ── */
+    .rev { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .rev.on { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
+    .d4 { transition-delay: 0.4s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 36px; text-align: center; }
+      .hero-actions { align-items: center; }
+      .hero-visual { order: -1; }
+      .phone { width: min(210px, 58vw); }
+
+      .grid-6 { grid-template-columns: 1fr; }
+
+      .fd-inner, .fd-inner.rev { grid-template-columns: 1fr; direction: ltr; gap: 36px; }
+      .fd-visual { order: -1; }
+      .fd-phone { width: min(190px, 52vw); }
+
+      .priv-inner { padding: 24px 18px; }
+      .nav-link { display: none; }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .grid-6 { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="lang-bar">
-            <select class="lang-select" id="langSelect" aria-label="Language">
-                <option value="ko">한국어</option>
-                <option value="en">English</option>
-                <option value="ja">日本語</option>
-                <option value="es">Español</option>
-                <option value="zh-CN">简体中文</option>
-                <option value="zh-TW">繁體中文</option>
-                <option value="pt">Português</option>
-                <option value="fr">Français</option>
-                <option value="de">Deutsch</option>
-            </select>
-        </div>
 
-        <div class="hero">
-            <img src="icon.png" alt="Clib App Icon" class="app-icon">
-            <h1>Clib</h1>
-            <p class="subtitle" data-i18n="subtitle"></p>
-            <p class="tagline" data-i18n="tagline"></p>
-        </div>
+<!-- NAV -->
+<nav class="nav">
+  <a href="#hero" class="nav-brand">
+    <img src="icon.png" alt="Clib">
+    <span>Clib</span>
+  </a>
+  <div class="nav-right">
+    <a href="#features" class="nav-link" data-i18n="navFeatures"></a>
+    <a href="#privacy" class="nav-link" data-i18n="navPrivacy"></a>
+    <a href="https://apps.apple.com/kr/app/%ED%81%B4%EB%A6%BD-clib-%EC%8A%A4%EC%99%80%EC%9D%B4%ED%94%84-%EC%A7%80%EC%8B%9D-%EB%8F%84%EC%84%9C%EA%B4%80/id6761673207" class="nav-cta" target="_blank" rel="noopener" data-i18n="navDownload"></a>
+    <select class="nav-lang" id="langSelect" aria-label="Language">
+      <option value="ko">한국어</option>
+      <option value="en">English</option>
+      <option value="ja">日本語</option>
+      <option value="es">Español</option>
+      <option value="zh-CN">简体中文</option>
+      <option value="zh-TW">繁體中文</option>
+      <option value="pt">Português</option>
+      <option value="fr">Français</option>
+      <option value="de">Deutsch</option>
+    </select>
+  </div>
+</nav>
 
-        <div class="features">
-            <div class="feature">
-                <h3 data-i18n="feat1Title"></h3>
-                <p data-i18n="feat1Desc"></p>
-            </div>
-            <div class="feature">
-                <h3 data-i18n="feat2Title"></h3>
-                <p data-i18n="feat2Desc"></p>
-            </div>
-            <div class="feature">
-                <h3 data-i18n="feat3Title"></h3>
-                <p data-i18n="feat3Desc"></p>
-            </div>
-            <div class="feature">
-                <h3 data-i18n="feat4Title"></h3>
-                <p data-i18n="feat4Desc"></p>
-            </div>
-            <div class="feature">
-                <h3 data-i18n="feat5Title"></h3>
-                <p data-i18n="feat5Desc"></p>
-            </div>
-            <div class="feature">
-                <h3 data-i18n="feat6Title"></h3>
-                <p data-i18n="feat6Desc"></p>
-            </div>
-        </div>
-
-        <div class="privacy">
-            <h2 data-i18n="privacyTitle"></h2>
-            <p class="privacy-date" data-i18n="privacyDate"></p>
-
-            <h3 data-i18n="priv1Title"></h3>
-            <p data-i18n="priv1Desc1"></p>
-            <p data-i18n="priv1Desc2"></p>
-            <p data-i18n-html="priv1List"></p>
-
-            <h3 data-i18n="priv2Title"></h3>
-            <p data-i18n="priv2Desc"></p>
-
-            <h3 data-i18n="priv3Title"></h3>
-            <p data-i18n-html="priv3Desc"></p>
-
-            <h3 data-i18n="priv4Title"></h3>
-            <p data-i18n-html="priv4Desc1"></p>
-            <p data-i18n-html="priv4Desc2"></p>
-
-            <h3 data-i18n="priv5Title"></h3>
-            <p data-i18n="priv5Desc"></p>
-
-            <h3 data-i18n="priv6Title"></h3>
-            <p data-i18n="priv6Desc"></p>
-
-            <h3 data-i18n="priv7Title"></h3>
-            <p data-i18n="priv7Desc"></p>
-
-            <h3 data-i18n="priv8Title"></h3>
-            <p data-i18n="priv8Desc"></p>
-        </div>
-
-        <div class="contact">
-            <h2 data-i18n="contactTitle"></h2>
-            <p data-i18n="contactDesc"></p>
-            <p><a href="https://github.com/vljh246v/clib-support/issues">GitHub Issues</a></p>
-            <p style="margin-top: 24px; font-size: 13px; color: #AEAEB2;">&copy; 2026 JaeHyun Lim. All rights reserved.</p>
-        </div>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="hero-eyebrow rev">Clib</span>
+      <h1 class="hero-title rev d1" data-i18n="heroTitle"></h1>
+      <p class="hero-tagline rev d2" data-i18n="tagline"></p>
+      <div class="hero-actions rev d3">
+        <a href="https://apps.apple.com/kr/app/%ED%81%B4%EB%A6%BD-clib-%EC%8A%A4%EC%99%80%EC%9D%B4%ED%94%84-%EC%A7%80%EC%8B%9D-%EB%8F%84%EC%84%9C%EA%B4%80/id6761673207" class="btn-store" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 814 1000"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76.5 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 341.8 10.5 202.7 10.5 169.1c0-7.7 2-15.4 4.5-23.2C79.2 17.5 219.4-22.5 324.1 0c68.1 13.5 124.7 57.7 174.8 57.7 49.4 0 142.5-63.9 229.5-63.9 43.4 0 178.8 14.1 246.5 109.2zm-168.9-71.5c-35.8-45.7-87.5-80-151.5-80-41.7 0-97.3 30.4-130.3 77.3-29.2 40.5-54.9 105.5-54.9 174.5 0 12.3 1.3 25.6 3.2 38.9 4.5.6 9.6 1.9 14.1 1.9 38.9 0 86.1-28.5 113.1-72.6 26.4-42.8 52.1-108.5 52.1-174.5 0-.6 0-3.2-.6-3.2-.6-.6 0-.6 0-1.3z"/></svg>
+          <span>
+            <span class="btn-store-sub" data-i18n="downloadSub"></span>
+            <span class="btn-store-label" data-i18n="downloadIos"></span>
+          </span>
+        </a>
+        <span class="android-note" data-i18n="comingSoonAndroid"></span>
+      </div>
     </div>
+    <div class="hero-visual rev d2">
+      <div class="phone">
+        <img src="img/screen_01_hero.png" alt="Clib 홈 화면"
+          onerror="this.outerHTML='<div class=phone-ph><span>📱</span><span>screen_01_hero.png</span></div>'">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES GRID -->
+<section id="features">
+  <div class="sec-head">
+    <p class="sec-eye rev" data-i18n="featEyebrow"></p>
+    <h2 class="sec-title rev d1" data-i18n="featTitle"></h2>
+  </div>
+  <div class="grid-6">
+    <div class="feat-card rev">
+      <span class="feat-icon">📤</span>
+      <h3 class="feat-title" data-i18n="feat1Title"></h3>
+      <p class="feat-desc" data-i18n="feat1Desc"></p>
+    </div>
+    <div class="feat-card rev d1">
+      <span class="feat-icon">👆</span>
+      <h3 class="feat-title" data-i18n="feat2Title"></h3>
+      <p class="feat-desc" data-i18n="feat2Desc"></p>
+    </div>
+    <div class="feat-card rev d2">
+      <span class="feat-icon">🏷️</span>
+      <h3 class="feat-title" data-i18n="feat3Title"></h3>
+      <p class="feat-desc" data-i18n="feat3Desc"></p>
+    </div>
+    <div class="feat-card rev d1">
+      <span class="feat-icon">🔔</span>
+      <h3 class="feat-title" data-i18n="feat4Title"></h3>
+      <p class="feat-desc" data-i18n="feat4Desc"></p>
+    </div>
+    <div class="feat-card rev d2">
+      <span class="feat-icon">📚</span>
+      <h3 class="feat-title" data-i18n="feat5Title"></h3>
+      <p class="feat-desc" data-i18n="feat5Desc"></p>
+    </div>
+    <div class="feat-card rev d3">
+      <span class="feat-icon">☁️</span>
+      <h3 class="feat-title" data-i18n="feat6Title"></h3>
+      <p class="feat-desc" data-i18n="feat6Desc"></p>
+    </div>
+  </div>
+</section>
+
+<!-- DETAIL 1: 간편한 저장 -->
+<section class="fd">
+  <div class="fd-inner">
+    <div class="fd-text rev">
+      <p class="fd-eye" data-i18n="feat1Title"></p>
+      <h2 class="fd-title" data-i18n="fd1Title"></h2>
+      <p class="fd-desc" data-i18n="feat1Desc"></p>
+    </div>
+    <div class="fd-visual rev d1">
+      <div class="fd-phone">
+        <img src="img/screen_02_save.png" alt="저장 화면"
+          onerror="this.outerHTML='<div class=phone-ph><span>📤</span><span>screen_02_save.png</span></div>'">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAIL 2: 라벨 -->
+<section class="fd">
+  <div class="fd-inner rev">
+    <div class="fd-text rev">
+      <p class="fd-eye" data-i18n="feat3Title"></p>
+      <h2 class="fd-title" data-i18n="fd2Title"></h2>
+      <p class="fd-desc" data-i18n="feat3Desc"></p>
+    </div>
+    <div class="fd-visual rev d1">
+      <div class="fd-phone">
+        <img src="img/screen_03_labels.png" alt="라벨 화면"
+          onerror="this.outerHTML='<div class=phone-ph><span>🏷️</span><span>screen_03_labels.png</span></div>'">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAIL 3: 알림 -->
+<section class="fd">
+  <div class="fd-inner">
+    <div class="fd-text rev">
+      <p class="fd-eye" data-i18n="feat4Title"></p>
+      <h2 class="fd-title" data-i18n="fd3Title"></h2>
+      <p class="fd-desc" data-i18n="feat4Desc"></p>
+    </div>
+    <div class="fd-visual rev d1">
+      <div class="fd-phone">
+        <img src="img/screen_04_notifications.png" alt="알림 설정 화면"
+          onerror="this.outerHTML='<div class=phone-ph><span>🔔</span><span>screen_04_notifications.png</span></div>'">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAIL 4: 도서관 -->
+<section class="fd">
+  <div class="fd-inner rev">
+    <div class="fd-text rev">
+      <p class="fd-eye" data-i18n="feat5Title"></p>
+      <h2 class="fd-title" data-i18n="fd4Title"></h2>
+      <p class="fd-desc" data-i18n="feat5Desc"></p>
+    </div>
+    <div class="fd-visual rev d1">
+      <div class="fd-phone">
+        <img src="img/screen_05_library.png" alt="도서관 화면"
+          onerror="this.outerHTML='<div class=phone-ph><span>📚</span><span>screen_05_library.png</span></div>'">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD CTA -->
+<section id="download">
+  <h2 class="sec-title rev" data-i18n="ctaTitle"></h2>
+  <p class="sec-sub rev d1" data-i18n="ctaSub"></p>
+  <div class="dl-actions">
+    <a href="https://apps.apple.com/kr/app/%ED%81%B4%EB%A6%BD-clib-%EC%8A%A4%EC%99%80%EC%9D%B4%ED%94%84-%EC%A7%80%EC%8B%9D-%EB%8F%84%EC%84%9C%EA%B4%80/id6761673207" class="btn-store-light rev d2" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 814 1000"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76.5 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 341.8 10.5 202.7 10.5 169.1c0-7.7 2-15.4 4.5-23.2C79.2 17.5 219.4-22.5 324.1 0c68.1 13.5 124.7 57.7 174.8 57.7 49.4 0 142.5-63.9 229.5-63.9 43.4 0 178.8 14.1 246.5 109.2zm-168.9-71.5c-35.8-45.7-87.5-80-151.5-80-41.7 0-97.3 30.4-130.3 77.3-29.2 40.5-54.9 105.5-54.9 174.5 0 12.3 1.3 25.6 3.2 38.9 4.5.6 9.6 1.9 14.1 1.9 38.9 0 86.1-28.5 113.1-72.6 26.4-42.8 52.1-108.5 52.1-174.5 0-.6 0-3.2-.6-3.2-.6-.6 0-.6 0-1.3z"/></svg>
+      <span>
+        <span class="btn-store-sub" data-i18n="downloadSub"></span>
+        <span class="btn-store-label" data-i18n="downloadIos"></span>
+      </span>
+    </a>
+    <span class="android-note-light rev d3" data-i18n="comingSoonAndroid"></span>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section id="privacy">
+  <div class="priv-inner">
+    <h2 data-i18n="privacyTitle"></h2>
+    <p class="priv-date" data-i18n="privacyDate"></p>
+    <h3 data-i18n="priv1Title"></h3>
+    <p data-i18n="priv1Desc1"></p>
+    <p data-i18n="priv1Desc2"></p>
+    <p data-i18n-html="priv1List"></p>
+    <h3 data-i18n="priv2Title"></h3>
+    <p data-i18n="priv2Desc"></p>
+    <h3 data-i18n="priv3Title"></h3>
+    <p data-i18n-html="priv3Desc"></p>
+    <h3 data-i18n="priv4Title"></h3>
+    <p data-i18n-html="priv4Desc1"></p>
+    <p data-i18n-html="priv4Desc2"></p>
+    <h3 data-i18n="priv5Title"></h3>
+    <p data-i18n="priv5Desc"></p>
+    <h3 data-i18n="priv6Title"></h3>
+    <p data-i18n="priv6Desc"></p>
+    <h3 data-i18n="priv7Title"></h3>
+    <p data-i18n="priv7Desc"></p>
+    <h3 data-i18n="priv8Title"></h3>
+    <p data-i18n="priv8Desc"></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-inner">
+    <p class="foot-title" data-i18n="contactTitle"></p>
+    <p class="foot-desc" data-i18n="contactDesc"></p>
+    <a href="https://github.com/vljh246v/clib-support/issues" class="foot-link" target="_blank" rel="noopener">GitHub Issues</a>
+    <p class="foot-copy">&copy; 2026 JaeHyun Lim. All rights reserved.</p>
+  </div>
+</footer>
 
 <script>
 const T = {
   ko: {
+    heroTitle: "저장만 하던 습관,\n읽는 습관으로",
+    downloadSub: "지금 무료 다운로드",
+    downloadIos: "App Store에서 받기",
+    comingSoonAndroid: "Android 곧 출시 예정",
+    ctaTitle: "지금 시작하세요",
+    ctaSub: "무료로 사용하세요. 계정 없이도 바로.",
+    navDownload: "다운로드",
+    navFeatures: "기능",
+    navPrivacy: "개인정보",
+    featEyebrow: "주요 기능",
+    featTitle: "링크 저장의 새로운 방식",
+    fd1Title: "공유 버튼 하나로\n어디서든 바로 저장",
+    fd2Title: "라벨로 분류하고\n진행률을 한눈에",
+    fd3Title: "잊지 않도록\n알림으로 챙겨드려요",
+    fd4Title: "북마크·메모·읽음까지\n체계적으로 관리",
     subtitle: "스와이프 지식 도서관",
     tagline: "저장만 하던 습관에서 읽는 습관으로",
     feat1Title: "간편한 저장",
@@ -277,6 +559,21 @@ const T = {
   },
 
   en: {
+    heroTitle: "Stop saving.\nStart reading.",
+    downloadSub: "Free Download",
+    downloadIos: "Download on the App Store",
+    comingSoonAndroid: "Android coming soon",
+    ctaTitle: "Start reading today",
+    ctaSub: "Free to use. No account required.",
+    navDownload: "Download",
+    navFeatures: "Features",
+    navPrivacy: "Privacy",
+    featEyebrow: "Features",
+    featTitle: "A new way to save links",
+    fd1Title: "One tap to save,\nfrom any app",
+    fd2Title: "Sort with labels,\ntrack your progress",
+    fd3Title: "Never forget\nwith smart reminders",
+    fd4Title: "Bookmarks, memos,\nread status — all yours",
     subtitle: "Swipe Knowledge Library",
     tagline: "Turn saved links into a reading habit",
     feat1Title: "Save Effortlessly",
@@ -317,6 +614,21 @@ const T = {
   },
 
   ja: {
+    heroTitle: "保存するだけの習慣を、\n読む習慣へ。",
+    downloadSub: "無料でダウンロード",
+    downloadIos: "App Storeでダウンロード",
+    comingSoonAndroid: "Android は近日公開予定",
+    ctaTitle: "さっそく始めましょう",
+    ctaSub: "無料でご利用いただけます。アカウント不要。",
+    navDownload: "ダウンロード",
+    navFeatures: "機能",
+    navPrivacy: "プライバシー",
+    featEyebrow: "主な機能",
+    featTitle: "リンク保存の新しいかたち",
+    fd1Title: "共有ボタン一つで\nどこからでも保存",
+    fd2Title: "ラベルで分類して\n進捗を一目で確認",
+    fd3Title: "忘れないように\n通知でお知らせ",
+    fd4Title: "ブックマーク・メモ・既読\nすべて一括管理",
     subtitle: "スワイプ式ナレッジライブラリ",
     tagline: "保存するだけの習慣を、読む習慣へ",
     feat1Title: "かんたん保存",
@@ -357,6 +669,21 @@ const T = {
   },
 
   es: {
+    heroTitle: "Deja de guardar.\nEmpieza a leer.",
+    downloadSub: "Descarga gratuita",
+    downloadIos: "Descargar en App Store",
+    comingSoonAndroid: "Android próximamente",
+    ctaTitle: "Empieza a leer hoy",
+    ctaSub: "Gratis. Sin cuenta requerida.",
+    navDownload: "Descargar",
+    navFeatures: "Funciones",
+    navPrivacy: "Privacidad",
+    featEyebrow: "Funciones",
+    featTitle: "Una nueva forma de guardar enlaces",
+    fd1Title: "Un toque para guardar\ndesde cualquier app",
+    fd2Title: "Organiza con etiquetas\ny ve tu progreso",
+    fd3Title: "Nunca olvides\ngracias a los recordatorios",
+    fd4Title: "Marcadores, notas,\nleídos — todo en orden",
     subtitle: "Biblioteca de conocimiento con swipe",
     tagline: "Convierte los enlaces guardados en hábito de lectura",
     feat1Title: "Guarda sin esfuerzo",
@@ -397,6 +724,21 @@ const T = {
   },
 
   "zh-CN": {
+    heroTitle: "别只是收藏，\n开始阅读吧。",
+    downloadSub: "免费下载",
+    downloadIos: "从 App Store 下载",
+    comingSoonAndroid: "Android 即将上线",
+    ctaTitle: "立即开始阅读",
+    ctaSub: "免费使用，无需账号。",
+    navDownload: "下载",
+    navFeatures: "功能",
+    navPrivacy: "隐私",
+    featEyebrow: "核心功能",
+    featTitle: "保存链接的全新方式",
+    fd1Title: "一键分享\n随处保存",
+    fd2Title: "标签分类\n一眼看清进度",
+    fd3Title: "智能提醒\n不再遗忘",
+    fd4Title: "收藏·备注·阅读状态\n全部一手掌握",
     subtitle: "滑动式知识书库",
     tagline: "让收藏不再积灰，养成阅读好习惯",
     feat1Title: "轻松保存",
@@ -437,6 +779,21 @@ const T = {
   },
 
   "zh-TW": {
+    heroTitle: "別只是收藏，\n開始閱讀吧。",
+    downloadSub: "免費下載",
+    downloadIos: "從 App Store 下載",
+    comingSoonAndroid: "Android 即將推出",
+    ctaTitle: "立即開始閱讀",
+    ctaSub: "免費使用，無需帳號。",
+    navDownload: "下載",
+    navFeatures: "功能",
+    navPrivacy: "隱私",
+    featEyebrow: "核心功能",
+    featTitle: "儲存連結的全新方式",
+    fd1Title: "一鍵分享\n隨處儲存",
+    fd2Title: "標籤分類\n一眼看清進度",
+    fd3Title: "智慧提醒\n不再遺忘",
+    fd4Title: "收藏·備註·閱讀狀態\n全部一手掌握",
     subtitle: "滑動式知識書庫",
     tagline: "讓收藏不再積灰，養成閱讀好習慣",
     feat1Title: "輕鬆儲存",
@@ -477,6 +834,21 @@ const T = {
   },
 
   pt: {
+    heroTitle: "Pare de salvar.\nComece a ler.",
+    downloadSub: "Download gratuito",
+    downloadIos: "Baixar na App Store",
+    comingSoonAndroid: "Android em breve",
+    ctaTitle: "Comece a ler hoje",
+    ctaSub: "Gratuito. Sem conta necessária.",
+    navDownload: "Baixar",
+    navFeatures: "Recursos",
+    navPrivacy: "Privacidade",
+    featEyebrow: "Recursos",
+    featTitle: "Uma nova forma de salvar links",
+    fd1Title: "Um toque para salvar\nde qualquer app",
+    fd2Title: "Organize por etiquetas\ne veja seu progresso",
+    fd3Title: "Nunca esqueça\ncom lembretes inteligentes",
+    fd4Title: "Favoritos, notas,\nstatus — tudo organizado",
     subtitle: "Biblioteca de conhecimento com swipe",
     tagline: "Transforme links salvos em hábito de leitura",
     feat1Title: "Salve com facilidade",
@@ -517,6 +889,21 @@ const T = {
   },
 
   fr: {
+    heroTitle: "Arrêtez de sauvegarder.\nCommencez à lire.",
+    downloadSub: "Téléchargement gratuit",
+    downloadIos: "Télécharger sur l'App Store",
+    comingSoonAndroid: "Android bientôt disponible",
+    ctaTitle: "Commencez à lire aujourd'hui",
+    ctaSub: "Gratuit. Aucun compte requis.",
+    navDownload: "Télécharger",
+    navFeatures: "Fonctionnalités",
+    navPrivacy: "Confidentialité",
+    featEyebrow: "Fonctionnalités",
+    featTitle: "Une nouvelle façon de sauvegarder des liens",
+    fd1Title: "Un appui pour sauvegarder\ndepuis n'importe quelle app",
+    fd2Title: "Classez par étiquettes\net suivez votre avancée",
+    fd3Title: "N'oubliez plus rien\ngrâce aux rappels",
+    fd4Title: "Favoris, notes, statut —\ntout sous contrôle",
     subtitle: "Bibliothèque de connaissances par swipe",
     tagline: "Transformez vos liens sauvegardés en habitude de lecture",
     feat1Title: "Sauvegarde simple",
@@ -557,6 +944,21 @@ const T = {
   },
 
   de: {
+    heroTitle: "Aufhören zu speichern.\nAnfangen zu lesen.",
+    downloadSub: "Kostenlos herunterladen",
+    downloadIos: "Im App Store laden",
+    comingSoonAndroid: "Android folgt bald",
+    ctaTitle: "Fang heute an zu lesen",
+    ctaSub: "Kostenlos. Kein Konto erforderlich.",
+    navDownload: "Laden",
+    navFeatures: "Funktionen",
+    navPrivacy: "Datenschutz",
+    featEyebrow: "Funktionen",
+    featTitle: "Eine neue Art, Links zu speichern",
+    fd1Title: "Ein Tipp zum Speichern\naus jeder App",
+    fd2Title: "Labels anlegen\nund Fortschritt sehen",
+    fd3Title: "Vergiss nichts mehr\ndank smarter Erinnerungen",
+    fd4Title: "Lesezeichen, Notizen,\nStatus — alles im Griff",
     subtitle: "Wisch-Wissensbibliothek",
     tagline: "Vom Speichern zum Lesen — bau dir eine Lesegewohnheit auf",
     feat1Title: "Mühelos speichern",
@@ -600,47 +1002,38 @@ const T = {
 function setLanguage(lang) {
   const t = T[lang];
   if (!t) return;
-
   document.documentElement.lang = lang;
-  document.title = "Clib — " + t.subtitle;
-
+  document.title = "Clib \u2014 " + t.subtitle;
   document.querySelectorAll("[data-i18n]").forEach(function(el) {
     var key = el.getAttribute("data-i18n");
     if (t[key] != null) el.textContent = t[key];
   });
-
   document.querySelectorAll("[data-i18n-html]").forEach(function(el) {
     var key = el.getAttribute("data-i18n-html");
     if (t[key] != null) el.innerHTML = t[key];
   });
-
   document.getElementById("langSelect").value = lang;
   try { localStorage.setItem("clib-lang", lang); } catch(e) {}
 }
 
 function detectLanguage() {
-  try {
-    var saved = localStorage.getItem("clib-lang");
-    if (saved && T[saved]) return saved;
-  } catch(e) {}
-
-  var nav = (navigator.language || navigator.userLanguage || "en").toLowerCase();
-
+  try { var s = localStorage.getItem("clib-lang"); if (s && T[s]) return s; } catch(e) {}
+  var nav = (navigator.language || "en").toLowerCase();
   if (nav.startsWith("zh")) {
-    if (nav.includes("tw") || nav.includes("hant") || nav.includes("hk") || nav.includes("mo")) return "zh-TW";
-    return "zh-CN";
+    return (nav.includes("tw")||nav.includes("hant")||nav.includes("hk")||nav.includes("mo")) ? "zh-TW" : "zh-CN";
   }
-
   var base = nav.split("-")[0];
-  var supported = ["ko","en","ja","es","pt","fr","de"];
-  if (supported.indexOf(base) !== -1) return base;
-
-  return "en";
+  return ["ko","en","ja","es","pt","fr","de"].indexOf(base) !== -1 ? base : "en";
 }
 
-document.getElementById("langSelect").addEventListener("change", function() {
-  setLanguage(this.value);
-});
+document.getElementById("langSelect").addEventListener("change", function() { setLanguage(this.value); });
+
+// Reveal on scroll
+var revEls = document.querySelectorAll(".rev");
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add("on"); obs.unobserve(e.target); } });
+}, { threshold: 0.12 });
+revEls.forEach(function(el) { obs.observe(el); });
 
 setLanguage(detectLanguage());
 </script>
