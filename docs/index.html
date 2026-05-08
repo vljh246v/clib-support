@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Clib — 스와이프 지식 도서관. 저장만 하던 습관에서 읽는 습관으로.">
+  <meta name="description" content="Clib — 스와이프로 저장한 링크를 다시 읽게 만드는 지식 도서관. iOS 앱과 Chrome 확장 프로그램에서 링크를 바로 저장하세요.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Clib — 스와이프 지식 도서관">
-  <meta property="og:description" content="저장만 하던 습관에서 읽는 습관으로. 스와이프 카드 UI로 링크를 게임처럼 소화하세요.">
+  <meta property="og:description" content="스와이프로 저장한 링크를 다시 읽게 만드는 지식 도서관. iOS 앱과 Chrome 확장 프로그램에서 링크를 바로 저장하세요.">
   <meta property="og:image" content="img/og.png">
   <meta property="og:url" content="https://vljh246v.github.io/clib-support/">
   <meta name="twitter:card" content="summary_large_image">
@@ -262,6 +262,14 @@
       font-size: 14px; color: var(--body); padding-left: 20px; position: relative;
     }
     .ext-feats li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+    .ext-actions { margin-top: 24px; }
+    .ext-store-link {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 44px; padding: 0 18px; border-radius: 22px;
+      background: var(--primary); color: #fff; text-decoration: none;
+      font-size: 14px; font-weight: 700; transition: transform 0.15s, opacity 0.15s;
+    }
+    .ext-store-link:hover { transform: translateY(-2px); opacity: 0.88; }
     .ext-visual { display: flex; justify-content: center; }
     .ext-popup-wrap {
       width: 260px;
@@ -341,6 +349,7 @@
   </a>
   <div class="nav-right">
     <a href="#features" class="nav-link" data-i18n="navFeatures"></a>
+    <a href="#extension" class="nav-link" data-i18n="navExtension"></a>
     <a href="#privacy" class="nav-link" data-i18n="navPrivacy"></a>
     <a href="https://apps.apple.com/kr/app/%ED%81%B4%EB%A6%BD-clib-%EC%8A%A4%EC%99%80%EC%9D%B4%ED%94%84-%EC%A7%80%EC%8B%9D-%EB%8F%84%EC%84%9C%EA%B4%80/id6761673207" class="nav-cta" target="_blank" rel="noopener" data-i18n="navDownload"></a>
     <select class="nav-lang" id="langSelect" aria-label="Language">
@@ -500,6 +509,9 @@
         <li data-i18n="extFeat2"></li>
         <li data-i18n="extFeat3"></li>
       </ul>
+      <div class="ext-actions rev d4">
+        <a href="https://chromewebstore.google.com/detail/clib/lofofeddnebhdopebbcngmjjfmhddcjf?hl=ko" class="ext-store-link" target="_blank" rel="noopener" data-i18n="extStoreCta"></a>
+      </div>
     </div>
     <div class="ext-visual rev d1">
       <div class="ext-popup-wrap">
@@ -593,6 +605,7 @@ const T = {
     ctaSub: "무료로 사용하세요. 계정 없이도 바로.",
     navDownload: "다운로드",
     navFeatures: "기능",
+    navExtension: "Chrome 확장",
     navPrivacy: "개인정보",
     featEyebrow: "주요 기능",
     featTitle: "링크 저장의 새로운 방식",
@@ -640,10 +653,11 @@ const T = {
     contactDesc: "버그 신고 및 기능 제안",
     extEyebrow: "Chrome 확장 프로그램",
     extTitle: "브라우저에서도\n바로 저장",
-    extDesc: "웹 서핑 중 마음에 드는 링크를 발견했나요? 확장 프로그램 아이콘 클릭 한 번으로 현재 탭을 Clib에 바로 저장하세요. Google 계정으로 로그인하면 모바일 앱과 실시간으로 동기화됩니다.",
+    extDesc: "Clib Chrome 확장 프로그램이 출시되었습니다. 웹 서핑 중 마음에 드는 링크를 발견하면 확장 프로그램 아이콘 클릭 한 번으로 현재 탭을 Clib에 바로 저장하세요. Google 계정으로 로그인하면 모바일 앱과 실시간으로 동기화됩니다.",
     extFeat1: "현재 탭 원클릭 저장",
     extFeat2: "라벨로 바로 분류",
     extFeat3: "모바일 앱과 실시간 동기화",
+    extStoreCta: "Chrome 웹 스토어에서 설치",
     extTabSave: "저장",
     extTabRecent: "최근 목록",
     extChip1: "디자인",
@@ -661,6 +675,7 @@ const T = {
     ctaSub: "Free to use. No account required.",
     navDownload: "Download",
     navFeatures: "Features",
+    navExtension: "Chrome Extension",
     navPrivacy: "Privacy",
     featEyebrow: "Features",
     featTitle: "A new way to save links",
@@ -708,10 +723,11 @@ const T = {
     contactDesc: "Bug reports & feature requests",
     extEyebrow: "Chrome Extension",
     extTitle: "Save from your\nbrowser, too",
-    extDesc: "Found a great link while browsing on your PC? Save the current tab to Clib with a single click on the extension icon. Sign in with your Google account to sync instantly with your mobile app.",
+    extDesc: "The Clib Chrome extension is now available. Found a great link while browsing on your PC? Save the current tab to Clib with a single click on the extension icon. Sign in with your Google account to sync instantly with your mobile app.",
     extFeat1: "Save current tab in one click",
     extFeat2: "Assign labels right away",
     extFeat3: "Real-time sync with mobile app",
+    extStoreCta: "Install from Chrome Web Store",
     extTabSave: "Save",
     extTabRecent: "Recent",
     extChip1: "Design",
@@ -729,6 +745,7 @@ const T = {
     ctaSub: "無料でご利用いただけます。アカウント不要。",
     navDownload: "ダウンロード",
     navFeatures: "機能",
+    navExtension: "Chrome 拡張",
     navPrivacy: "プライバシー",
     featEyebrow: "主な機能",
     featTitle: "リンク保存の新しいかたち",
@@ -776,10 +793,11 @@ const T = {
     contactDesc: "バグ報告・機能リクエスト",
     extEyebrow: "Chrome 拡張機能",
     extTitle: "ブラウザからも\nすぐ保存",
-    extDesc: "PCでウェブを閲覧中に気になるリンクを見つけたら、拡張機能アイコンをクリックするだけでClibに保存できます。Googleアカウントでログインすれば、モバイルアプリとリアルタイムで同期されます。",
+    extDesc: "ClibのChrome拡張機能が公開されました。PCでウェブを閲覧中に気になるリンクを見つけたら、拡張機能アイコンをクリックするだけでClibに保存できます。Googleアカウントでログインすれば、モバイルアプリとリアルタイムで同期されます。",
     extFeat1: "現在のタブをワンクリックで保存",
     extFeat2: "ラベルですぐに分類",
     extFeat3: "モバイルアプリとリアルタイム同期",
+    extStoreCta: "Chrome ウェブストアでインストール",
     extTabSave: "保存",
     extTabRecent: "最近の一覧",
     extChip1: "デザイン",
@@ -797,6 +815,7 @@ const T = {
     ctaSub: "Gratis. Sin cuenta requerida.",
     navDownload: "Descargar",
     navFeatures: "Funciones",
+    navExtension: "Extensión Chrome",
     navPrivacy: "Privacidad",
     featEyebrow: "Funciones",
     featTitle: "Una nueva forma de guardar enlaces",
@@ -844,10 +863,11 @@ const T = {
     contactDesc: "Reportar errores y sugerir funciones",
     extEyebrow: "Extensión de Chrome",
     extTitle: "Guarda también\ndesde el navegador",
-    extDesc: "¿Encontraste un enlace interesante mientras navegas en el PC? Guarda la pestaña actual en Clib con un solo clic en el icono de la extensión. Inicia sesión con tu cuenta de Google para sincronizar al instante con tu app móvil.",
+    extDesc: "La extensión de Chrome de Clib ya está disponible. ¿Encontraste un enlace interesante mientras navegas en el PC? Guarda la pestaña actual en Clib con un solo clic en el icono de la extensión. Inicia sesión con tu cuenta de Google para sincronizar al instante con tu app móvil.",
     extFeat1: "Guardar pestaña actual con un clic",
     extFeat2: "Asigna etiquetas al instante",
     extFeat3: "Sincronización en tiempo real con la app",
+    extStoreCta: "Instalar desde Chrome Web Store",
     extTabSave: "Guardar",
     extTabRecent: "Recientes",
     extChip1: "Diseño",
@@ -865,6 +885,7 @@ const T = {
     ctaSub: "免费使用，无需账号。",
     navDownload: "下载",
     navFeatures: "功能",
+    navExtension: "Chrome 扩展",
     navPrivacy: "隐私",
     featEyebrow: "核心功能",
     featTitle: "保存链接的全新方式",
@@ -912,10 +933,11 @@ const T = {
     contactDesc: "报告问题与功能建议",
     extEyebrow: "Chrome 扩展程序",
     extTitle: "在浏览器中\n一键保存",
-    extDesc: "电脑浏览时发现了好链接？点击一下扩展图标，即可将当前页面保存到Clib。登录Google账号后，与手机应用实时同步。",
+    extDesc: "Clib Chrome 扩展程序现已上线。电脑浏览时发现了好链接？点击一下扩展图标，即可将当前页面保存到Clib。登录Google账号后，与手机应用实时同步。",
     extFeat1: "一键保存当前标签页",
     extFeat2: "即时添加标签分类",
     extFeat3: "与手机应用实时同步",
+    extStoreCta: "从 Chrome 网上应用店安装",
     extTabSave: "保存",
     extTabRecent: "最近",
     extChip1: "设计",
@@ -933,6 +955,7 @@ const T = {
     ctaSub: "免費使用，無需帳號。",
     navDownload: "下載",
     navFeatures: "功能",
+    navExtension: "Chrome 擴充",
     navPrivacy: "隱私",
     featEyebrow: "核心功能",
     featTitle: "儲存連結的全新方式",
@@ -980,10 +1003,11 @@ const T = {
     contactDesc: "回報問題與功能建議",
     extEyebrow: "Chrome 擴充功能",
     extTitle: "在瀏覽器中\n一鍵儲存",
-    extDesc: "在電腦瀏覽時發現了好連結？點擊一下擴充圖示，即可將目前頁面儲存至Clib。登入Google帳號後，與手機應用程式即時同步。",
+    extDesc: "Clib Chrome 擴充功能現已推出。在電腦瀏覽時發現了好連結？點擊一下擴充圖示，即可將目前頁面儲存至Clib。登入Google帳號後，與手機應用程式即時同步。",
     extFeat1: "一鍵儲存目前分頁",
     extFeat2: "立即新增標籤分類",
     extFeat3: "與手機應用程式即時同步",
+    extStoreCta: "從 Chrome 線上應用程式商店安裝",
     extTabSave: "儲存",
     extTabRecent: "最近",
     extChip1: "設計",
@@ -1001,6 +1025,7 @@ const T = {
     ctaSub: "Gratuito. Sem conta necessária.",
     navDownload: "Baixar",
     navFeatures: "Recursos",
+    navExtension: "Extensão Chrome",
     navPrivacy: "Privacidade",
     featEyebrow: "Recursos",
     featTitle: "Uma nova forma de salvar links",
@@ -1048,10 +1073,11 @@ const T = {
     contactDesc: "Relatar bugs e sugerir funcionalidades",
     extEyebrow: "Extensão para Chrome",
     extTitle: "Salve também\npelo navegador",
-    extDesc: "Encontrou um link interessante enquanto navegava no PC? Salve a aba atual no Clib com apenas um clique no ícone da extensão. Faça login com sua conta Google para sincronizar em tempo real com o app móvel.",
+    extDesc: "A extensão do Clib para Chrome já está disponível. Encontrou um link interessante enquanto navegava no PC? Salve a aba atual no Clib com apenas um clique no ícone da extensão. Faça login com sua conta Google para sincronizar em tempo real com o app móvel.",
     extFeat1: "Salvar aba atual com um clique",
     extFeat2: "Atribuir etiquetas na hora",
     extFeat3: "Sincronização em tempo real com o app",
+    extStoreCta: "Instalar pela Chrome Web Store",
     extTabSave: "Salvar",
     extTabRecent: "Recentes",
     extChip1: "Design",
@@ -1069,6 +1095,7 @@ const T = {
     ctaSub: "Gratuit. Aucun compte requis.",
     navDownload: "Télécharger",
     navFeatures: "Fonctionnalités",
+    navExtension: "Extension Chrome",
     navPrivacy: "Confidentialité",
     featEyebrow: "Fonctionnalités",
     featTitle: "Une nouvelle façon de sauvegarder des liens",
@@ -1116,10 +1143,11 @@ const T = {
     contactDesc: "Signaler des bugs et suggérer des fonctionnalités",
     extEyebrow: "Extension Chrome",
     extTitle: "Sauvegardez aussi\ndepuis le navigateur",
-    extDesc: "Vous avez trouvé un lien intéressant en naviguant sur PC ? Sauvegardez l'onglet actuel dans Clib en un seul clic sur l'icône de l'extension. Connectez-vous avec votre compte Google pour synchroniser instantanément avec votre app mobile.",
+    extDesc: "L'extension Chrome de Clib est maintenant disponible. Vous avez trouvé un lien intéressant en naviguant sur PC ? Sauvegardez l'onglet actuel dans Clib en un seul clic sur l'icône de l'extension. Connectez-vous avec votre compte Google pour synchroniser instantanément avec votre app mobile.",
     extFeat1: "Sauvegarder l'onglet actuel en un clic",
     extFeat2: "Attribuer des étiquettes immédiatement",
     extFeat3: "Synchronisation en temps réel avec l'app",
+    extStoreCta: "Installer depuis le Chrome Web Store",
     extTabSave: "Enregistrer",
     extTabRecent: "Récents",
     extChip1: "Design",
@@ -1137,6 +1165,7 @@ const T = {
     ctaSub: "Kostenlos. Kein Konto erforderlich.",
     navDownload: "Laden",
     navFeatures: "Funktionen",
+    navExtension: "Chrome-Erweiterung",
     navPrivacy: "Datenschutz",
     featEyebrow: "Funktionen",
     featTitle: "Eine neue Art, Links zu speichern",
@@ -1184,10 +1213,11 @@ const T = {
     contactDesc: "Fehler melden und Funktionen vorschlagen",
     extEyebrow: "Chrome-Erweiterung",
     extTitle: "Auch im Browser\ndirekt speichern",
-    extDesc: "Beim Surfen auf dem PC einen interessanten Link entdeckt? Speichere den aktuellen Tab mit einem Klick auf das Erweiterungs-Symbol in Clib. Melde dich mit deinem Google-Konto an, um sofort mit der mobilen App zu synchronisieren.",
+    extDesc: "Die Clib Chrome-Erweiterung ist jetzt verfügbar. Beim Surfen auf dem PC einen interessanten Link entdeckt? Speichere den aktuellen Tab mit einem Klick auf das Erweiterungs-Symbol in Clib. Melde dich mit deinem Google-Konto an, um sofort mit der mobilen App zu synchronisieren.",
     extFeat1: "Aktuellen Tab mit einem Klick speichern",
     extFeat2: "Labels sofort zuweisen",
     extFeat3: "Echtzeit-Synchronisierung mit der App",
+    extStoreCta: "Im Chrome Web Store installieren",
     extTabSave: "Speichern",
     extTabRecent: "Zuletzt",
     extChip1: "Design",
